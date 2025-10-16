@@ -1,6 +1,11 @@
-import { Quote, Star } from "lucide-react";
+"use client";
+
+import { Quote, Star, ChevronLeft, ChevronRight } from "lucide-react";
+import { useState } from "react";
 
 export default function TestimonialsSection() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
   const testimonials = [
     {
       text: "I gave birth safely after a high-risk pregnancy. The doctors and nurses treated me like family. Truly God's favour rests here.",
@@ -39,6 +44,22 @@ export default function TestimonialsSection() {
     },
   ];
 
+  const itemsPerPage = 3;
+  const totalPages = Math.ceil(testimonials.length / itemsPerPage);
+
+  const nextSlide = () => {
+    setCurrentIndex((prev) => (prev + 1) % totalPages);
+  };
+
+  const prevSlide = () => {
+    setCurrentIndex((prev) => (prev - 1 + totalPages) % totalPages);
+  };
+
+  const getVisibleTestimonials = () => {
+    const start = currentIndex * itemsPerPage;
+    return testimonials.slice(start, start + itemsPerPage);
+  };
+
   return (
     <section id="testimonials" className="bg-white py-20 px-6 md:px-12">
       <div className="max-w-7xl mx-auto">
@@ -59,51 +80,87 @@ export default function TestimonialsSection() {
           </p>
         </div>
 
-        {/* Testimonials Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {testimonials.map((testimonial, index) => (
-            <div
-              key={index}
-              className="bg-white rounded-xl p-6 shadow-lg border-t-2 border-gradient-to-r from-blue-500 to-blue-700 hover:shadow-xl transition-shadow duration-200"
-              style={{
-                borderTopWidth: "2px",
-                borderTopStyle: "solid",
-                borderImage:
-                  "linear-gradient(to right, rgb(59, 130, 246), rgb(29, 78, 216)) 1",
-              }}
-            >
-              {/* Quote Icon */}
-              <div className="mb-4">
-                <Quote className="w-10 h-10 text-blue-600" strokeWidth={2} />
-              </div>
+        {/* Carousel Container */}
+        <div className="relative">
+          {/* Navigation Buttons */}
+          <button
+            onClick={prevSlide}
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 w-12 h-12 bg-white rounded-full shadow-lg border border-gray-200 flex items-center justify-center text-blue-600 hover:bg-blue-50 transition-colors duration-200"
+            aria-label="Previous testimonials"
+          >
+            <ChevronLeft className="w-6 h-6" />
+          </button>
 
-              {/* Testimonial Text */}
-              <p className="text-gray-700 text-base italic leading-relaxed mb-4">
-                &quot;{testimonial.text}&quot;
-              </p>
+          <button
+            onClick={nextSlide}
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 w-12 h-12 bg-white rounded-full shadow-lg border border-gray-200 flex items-center justify-center text-blue-600 hover:bg-blue-50 transition-colors duration-200"
+            aria-label="Next testimonials"
+          >
+            <ChevronRight className="w-6 h-6" />
+          </button>
 
-              {/* Patient Info */}
-              <div className="mt-4 pt-4 border-t border-gray-100">
-                <p className="text-blue-700 font-semibold text-sm">
-                  {testimonial.name}
+          {/* Testimonials Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {getVisibleTestimonials().map((testimonial, index) => (
+              <div
+                key={currentIndex * itemsPerPage + index}
+                className="bg-white rounded-xl p-6 shadow-lg border-t-2 hover:shadow-xl transition-shadow duration-200"
+                style={{
+                  borderTopWidth: "2px",
+                  borderTopStyle: "solid",
+                  borderImage:
+                    "linear-gradient(to right, rgb(59, 130, 246), rgb(29, 78, 216)) 1",
+                }}
+              >
+                {/* Quote Icon */}
+                <div className="mb-4">
+                  <Quote className="w-10 h-10 text-blue-600" strokeWidth={2} />
+                </div>
+
+                {/* Testimonial Text */}
+                <p className="text-gray-700 text-base italic leading-relaxed mb-4">
+                  &quot;{testimonial.text}&quot;
                 </p>
-                <p className="text-gray-500 text-xs mt-1">
-                  {testimonial.location}
-                </p>
-              </div>
 
-              {/* Star Rating */}
-              <div className="flex space-x-1 mt-3">
-                {[...Array(5)].map((_, i) => (
-                  <Star
-                    key={i}
-                    className="w-4 h-4 text-blue-600"
-                    fill="currentColor"
-                  />
-                ))}
+                {/* Patient Info */}
+                <div className="mt-4 pt-4 border-t border-gray-100">
+                  <p className="text-blue-700 font-semibold text-sm">
+                    {testimonial.name}
+                  </p>
+                  <p className="text-gray-500 text-xs mt-1">
+                    {testimonial.location}
+                  </p>
+                </div>
+
+                {/* Star Rating */}
+                <div className="flex space-x-1 mt-3">
+                  {[...Array(5)].map((_, i) => (
+                    <Star
+                      key={i}
+                      className="w-4 h-4 text-blue-600"
+                      fill="currentColor"
+                    />
+                  ))}
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
+
+          {/* Carousel Indicators */}
+          <div className="flex justify-center space-x-2 mt-8">
+            {[...Array(totalPages)].map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentIndex(index)}
+                className={`w-3 h-3 rounded-full transition-all duration-200 ${
+                  index === currentIndex
+                    ? "bg-blue-600 w-8"
+                    : "bg-gray-300 hover:bg-gray-400"
+                }`}
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
+          </div>
         </div>
 
         {/* Bottom CTA */}

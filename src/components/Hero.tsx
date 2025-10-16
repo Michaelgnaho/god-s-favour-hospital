@@ -1,3 +1,4 @@
+"use client";
 import { HeartPulse, Calendar, Info } from "lucide-react";
 import Image from "next/image";
 
@@ -74,6 +75,8 @@ export default function HeroSection() {
                   src="/hero-hospital.jpg"
                   alt="God's Favourite Hospital - Modern Healthcare Facility"
                   className="w-full h-full object-cover"
+                  width={500}
+                  height={500}
                   onError={(e) => {
                     e.currentTarget.style.display = "none";
                     if (e.currentTarget.parentElement) {

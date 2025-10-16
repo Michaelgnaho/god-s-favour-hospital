@@ -1,3 +1,4 @@
+"use client";
 import { Hospital, Award, Users, Building2 } from "lucide-react";
 import Image from "next/image";
 
@@ -15,6 +16,8 @@ export default function AboutSection() {
                   src="/about-hospital.jpg"
                   alt="God's Favourite Hospital Building"
                   className="w-full h-full object-cover"
+                  width={500}
+                  height={375}
                   onError={(e) => {
                     e.currentTarget.style.display = "none";
                     if (e.currentTarget.parentElement) {
