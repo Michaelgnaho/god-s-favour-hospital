@@ -79,7 +79,7 @@ export default function TestimonialsSection() {
 
               {/* Testimonial Text */}
               <p className="text-gray-700 text-base italic leading-relaxed mb-4">
-                "{testimonial.text}"
+                &quot;{testimonial.text}&quot;
               </p>
 
               {/* Patient Info */}
@@ -109,7 +109,7 @@ export default function TestimonialsSection() {
         {/* Bottom CTA */}
         <div className="text-center mt-12 pt-8 border-t border-gray-200">
           <p className="text-gray-600 text-lg mb-6">
-            Join thousands of satisfied patients who chose God's Favourite
+            Join thousands of satisfied patients who chose God&apos;s Favourite
             Hospital
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
