@@ -87,7 +87,8 @@ export default function ServicesPage() {
       description:
         "Comprehensive primary care services for the entire family. From routine check-ups to chronic disease management, our experienced physicians provide personalized care tailored to your health needs.",
       icon: HeartPulse,
-      image: "/services/general-medicine.jpg",
+      image:
+        "https://i.pinimg.com/1200x/ba/fc/1f/bafc1f473f7414f3e46efdfcebea1e0d.jpg",
       features: [
         "Routine Health Check-ups",
         "Preventive Care",
@@ -100,7 +101,8 @@ export default function ServicesPage() {
       description:
         "Safe, professional, and compassionate maternal care throughout your pregnancy journey. Our experienced team ensures the health and comfort of both mother and baby.",
       icon: Baby,
-      image: "/services/maternity.jpg",
+      image:
+        "https://i.pinimg.com/736x/be/01/73/be01738d6a175df0082eaf28b7dc6542.jpg",
       features: [
         "Prenatal Care",
         "Safe Delivery Services",
@@ -113,7 +115,8 @@ export default function ServicesPage() {
       description:
         "Dedicated care for infants, children, and adolescents. Our pediatricians provide specialized treatment with a gentle, child-friendly approach.",
       icon: Syringe,
-      image: "/services/pediatrics.jpg",
+      image:
+        "https://i.pinimg.com/1200x/5c/7a/29/5c7a29a6b58c399f46a54d1027030803.jpg",
       features: [
         "Child Immunizations",
         "Growth Monitoring",
@@ -126,7 +129,8 @@ export default function ServicesPage() {
       description:
         "Modern surgical procedures performed by skilled specialists in a fully equipped operating theatre. We maintain the highest standards of surgical care and patient safety.",
       icon: Scissors,
-      image: "/services/surgery.jpg",
+      image:
+        "https://i.pinimg.com/1200x/07/d0/3a/07d03afc11b1dd96d84c5dc7821ef61d.jpg",
       features: [
         "Minor & Major Surgeries",
         "Pre-operative Assessment",
@@ -139,7 +143,8 @@ export default function ServicesPage() {
       description:
         "Round-the-clock emergency services for urgent medical situations. Our emergency team is always ready to provide immediate, life-saving care.",
       icon: AlertCircle,
-      image: "/services/emergency.jpg",
+      image:
+        "https://i.pinimg.com/736x/8a/b4/c5/8ab4c50e2305920a6569197391cbe5d9.jpg",
       features: [
         "24/7 Availability",
         "Rapid Response Team",
@@ -152,7 +157,8 @@ export default function ServicesPage() {
       description:
         "State-of-the-art laboratory equipped with modern diagnostic equipment. Fast, accurate test results to support effective treatment decisions.",
       icon: FlaskConical,
-      image: "/services/laboratory.jpg",
+      image:
+        "https://i.pinimg.com/736x/b5/49/92/b549924886a85296e350d50ce12f7b11.jpg",
       features: [
         "Blood Tests",
         "Urinalysis",
@@ -165,7 +171,8 @@ export default function ServicesPage() {
       description:
         "Well-stocked pharmacy providing quality medications and pharmaceutical care. Our pharmacists offer expert guidance on medication use.",
       icon: Pill,
-      image: "/services/pharmacy.jpg",
+      image:
+        "https://i.pinimg.com/736x/96/b2/10/96b210a82bf2f8cd4a73f355b22da622.jpg",
       features: [
         "Prescription Medications",
         "Over-the-Counter Drugs",
@@ -178,7 +185,8 @@ export default function ServicesPage() {
       description:
         "Comprehensive cardiovascular care and blood pressure management. Our cardiologists help you maintain a healthy heart through prevention and treatment.",
       icon: Activity,
-      image: "/services/cardiology.jpg",
+      image:
+        "https://i.pinimg.com/1200x/25/99/aa/2599aaebff117aaa977acba229ed354e.jpg",
       features: [
         "Blood Pressure Monitoring",
         "ECG Services",
@@ -191,7 +199,8 @@ export default function ServicesPage() {
       description:
         "Specialized care for diabetes and other chronic conditions. We provide ongoing support to help you manage your condition and maintain quality of life.",
       icon: Droplet,
-      image: "/services/diabetes.jpg",
+      image:
+        "https://i.pinimg.com/736x/64/16/e8/6416e8357805a2cc1628b1a003026312.jpg",
       features: [
         "Blood Sugar Monitoring",
         "Dietary Counseling",
@@ -204,7 +213,8 @@ export default function ServicesPage() {
       description:
         "Complete dental and ophthalmic services to maintain your oral and visual health. Our specialists provide preventive and corrective care.",
       icon: Eye,
-      image: "/services/dental-eye.jpg",
+      image:
+        "https://i.pinimg.com/736x/db/cb/33/dbcb339d41ebda484d0a111643a69fe5.jpg",
       features: [
         "Dental Examinations",
         "Eye Tests",
@@ -217,7 +227,8 @@ export default function ServicesPage() {
       description:
         "Extending healthcare beyond our walls through community education and outreach initiatives. We are committed to improving community health and wellness.",
       icon: Users,
-      image: "/services/community.jpg",
+      image:
+        "https://i.pinimg.com/1200x/51/5b/70/515b70475dad698b2f82ef15d88a5377.jpg",
       features: [
         "Health Education",
         "Free Screenings",
@@ -403,7 +414,7 @@ export default function ServicesPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="#appointment"
+              href="/contact"
               className="inline-flex items-center justify-center bg-white text-blue-700 px-10 py-4 rounded-full font-bold text-lg hover:shadow-xl transition-shadow duration-200"
             >
               <Calendar className="w-5 h-5 mr-2" />

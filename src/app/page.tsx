@@ -1,6 +1,5 @@
 import AboutSection from "@/components/About";
 import HeroSection from "@/components/Hero";
-import Image from "next/image";
 import ServicesSection from "@/components/Services";
 import TestimonialsSection from "@/components/Testimonials";
 

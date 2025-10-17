@@ -1,6 +1,7 @@
 "use client";
 import { Hospital, Award, Users, Building2 } from "lucide-react";
 import Image from "next/image";
+import aboutImg from "../../public/gfh-pics/img2.jpg";
 
 export default function AboutSection() {
   return (
@@ -13,7 +14,7 @@ export default function AboutSection() {
               {/* Image Placeholder */}
               <div className="aspect-[4/3] bg-gradient-to-br from-blue-50 to-blue-100">
                 <Image
-                  src="/about-hospital.jpg"
+                  src={aboutImg}
                   alt="God's Favourite Hospital Building"
                   className="w-full h-full object-cover"
                   width={500}

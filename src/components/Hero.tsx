@@ -72,7 +72,7 @@ export default function HeroSection() {
               {/* Image Placeholder */}
               <div className="aspect-square bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center">
                 <Image
-                  src="/hero-hospital.jpg"
+                  src="https://i.pinimg.com/736x/56/86/91/568691dff91597e5a16a53acb3b714dd.jpg"
                   alt="God's Favourite Hospital - Modern Healthcare Facility"
                   className="w-full h-full object-cover"
                   width={500}

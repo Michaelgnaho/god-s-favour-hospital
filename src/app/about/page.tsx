@@ -6,11 +6,12 @@ import {
   Target,
   Eye,
   Building2,
-  Calendar,
   CheckCircle,
   Stethoscope,
 } from "lucide-react";
 import type { Metadata } from "next";
+import Image from "next/image";
+import AboutImg2 from "../../../public/gfh-pics/img5.jpg";
 
 export const metadata: Metadata = {
   title: "About Us",
@@ -108,19 +109,14 @@ export default function AboutPage() {
             <div className="relative">
               <div className="relative rounded-2xl overflow-hidden shadow-2xl">
                 <div className="aspect-[4/3] bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center">
-                  <div className="text-center p-12">
-                    <div className="w-32 h-32 bg-gradient-to-br from-blue-500 to-blue-700 rounded-2xl flex items-center justify-center mb-6 mx-auto">
-                      <Hospital
-                        className="w-16 h-16 text-white"
-                        strokeWidth={2}
-                      />
-                    </div>
-                    <p className="text-blue-900 font-bold text-2xl">
-                      Established October 5, 2010
-                    </p>
-                    <p className="text-gray-600 mt-3 text-lg">
-                      By Dr. Rahman Balogun & Nurse Adeshola Sherifat
-                    </p>
+                  <div className="w-full h-full bg-gradient-to-br from-blue-500 to-blue-700 rounded-2xl flex items-center justify-center mb-6 mx-auto">
+                    <Image
+                      src={AboutImg2}
+                      alt="God's Favourite Hospital - Modern Healthcare Facility"
+                      className="w-full h-full object-cover"
+                      width={500}
+                      height={500}
+                    />
                   </div>
                 </div>
               </div>

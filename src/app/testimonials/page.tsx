@@ -217,7 +217,7 @@ export default function TestimonialsSection() {
               Contact Us
             </a>
             <a
-              href="#appointment"
+              href="/contact"
               className="inline-flex items-center justify-center border-2 border-blue-600 text-blue-600 px-10 py-4 rounded-full font-bold text-lg hover:bg-blue-50 transition-colors duration-200"
             >
               Book Appointment

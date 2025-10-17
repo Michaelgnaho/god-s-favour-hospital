@@ -291,23 +291,6 @@ export default function ContactPage() {
 
                 <div className="space-y-3">
                   <a
-                    href="#appointment"
-                    className="flex items-center space-x-3 p-4 bg-white rounded-lg border border-gray-200 hover:border-blue-300 hover:shadow-md transition-all duration-200"
-                  >
-                    <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
-                      <Calendar className="w-5 h-5 text-blue-600" />
-                    </div>
-                    <div>
-                      <p className="font-semibold text-gray-900">
-                        Book an Appointment
-                      </p>
-                      <p className="text-xs text-gray-600">
-                        Schedule your visit online
-                      </p>
-                    </div>
-                  </a>
-
-                  <a
                     href="tel:08033899495"
                     className="flex items-center space-x-3 p-4 bg-white rounded-lg border border-gray-200 hover:border-blue-300 hover:shadow-md transition-all duration-200"
                   >
