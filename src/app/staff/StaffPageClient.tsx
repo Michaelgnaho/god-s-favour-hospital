@@ -14,6 +14,7 @@ import {
   Phone,
 } from "lucide-react";
 import Image from "next/image";
+import AnimatedContent from "@/components/ui/AnimatedContent";
 
 export default function StaffPage() {
   const staff = [
@@ -96,41 +97,59 @@ export default function StaffPage() {
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-blue-50 to-white py-20 px-6 md:px-12">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <div className="flex items-center justify-center space-x-3 mb-6">
-              <div className="h-1 w-16 bg-gradient-to-r from-blue-500 to-blue-700 rounded-full"></div>
-              <Users className="w-10 h-10 text-blue-600" strokeWidth={2} />
-              <div className="h-1 w-16 bg-gradient-to-r from-blue-500 to-blue-700 rounded-full"></div>
+          <AnimatedContent
+            distance={100}
+            direction="vertical"
+            duration={1.2}
+            reverse={true}
+            initialOpacity={0}
+            animateOpacity
+            threshold={0.1}
+          >
+            <div className="text-center mb-12">
+              <div className="flex items-center justify-center space-x-3 mb-6">
+                <div className="h-1 w-16 bg-gradient-to-r from-blue-500 to-blue-700 rounded-full"></div>
+                <Users className="w-10 h-10 text-blue-600" strokeWidth={2} />
+                <div className="h-1 w-16 bg-gradient-to-r from-blue-500 to-blue-700 rounded-full"></div>
+              </div>
+
+              <h1 className="font-extrabold text-4xl md:text-5xl lg:text-6xl text-blue-900 leading-tight mb-6">
+                Meet Our Dedicated Team
+              </h1>
+
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                A team of passionate healthcare professionals united by faith,
+                compassion, and a commitment to healing excellence.
+              </p>
             </div>
-
-            <h1 className="font-extrabold text-4xl md:text-5xl lg:text-6xl text-blue-900 leading-tight mb-6">
-              Meet Our Dedicated Team
-            </h1>
-
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              A team of passionate healthcare professionals united by faith,
-              compassion, and a commitment to healing excellence.
-            </p>
-          </div>
+          </AnimatedContent>
 
           {/* Team Stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
-            <div className="bg-white rounded-xl p-6 shadow-lg text-center">
-              <p className="text-3xl font-bold text-blue-700 mb-2">3</p>
-              <p className="text-sm text-gray-600">Medical Doctors</p>
-            </div>
-            <div className="bg-white rounded-xl p-6 shadow-lg text-center">
-              <p className="text-3xl font-bold text-blue-700 mb-2">20+</p>
-              <p className="text-sm text-gray-600">Qualified Nurses</p>
-            </div>
-            <div className="bg-white rounded-xl p-6 shadow-lg text-center">
-              <p className="text-3xl font-bold text-blue-700 mb-2">8</p>
-              <p className="text-sm text-gray-600">Core Staff</p>
-            </div>
-            <div className="bg-white rounded-xl p-6 shadow-lg text-center">
-              <p className="text-3xl font-bold text-blue-700 mb-2">15+</p>
-              <p className="text-sm text-gray-600">Years Experience</p>
-            </div>
+            {[
+              { value: "3", label: "Medical Doctors" },
+              { value: "20+", label: "Qualified Nurses" },
+              { value: "8", label: "Core Staff" },
+              { value: "15+", label: "Years Experience" },
+            ].map((stat, index) => (
+              <AnimatedContent
+                key={index}
+                distance={80}
+                direction="vertical"
+                duration={1.2 + index * 0.1}
+                reverse={false}
+                initialOpacity={0}
+                animateOpacity
+                threshold={0.2}
+              >
+                <div className="bg-white rounded-xl p-6 shadow-lg text-center">
+                  <p className="text-3xl font-bold text-blue-700 mb-2">
+                    {stat.value}
+                  </p>
+                  <p className="text-sm text-gray-600">{stat.label}</p>
+                </div>
+              </AnimatedContent>
+            ))}
           </div>
         </div>
       </section>
@@ -143,21 +162,28 @@ export default function StaffPage() {
               const IconComponent = member.icon;
 
               return (
-                <div
+                <AnimatedContent
                   key={index}
-                  className="bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-200"
+                  distance={120}
+                  direction="vertical"
+                  duration={1.3 + (index % 2) * 0.1}
+                  reverse={false}
+                  initialOpacity={0}
+                  animateOpacity
+                  threshold={0.2}
                 >
-                  {/* Staff Image */}
-                  <div className="relative h-80 bg-gradient-to-br from-blue-50 to-blue-100">
-                    <Image
-                      src={member.image}
-                      alt={member.name}
-                      fill
-                      className="object-cover"
-                      onError={(e) => {
-                        e.currentTarget.style.display = "none";
-                        if (e.currentTarget.parentElement) {
-                          e.currentTarget.parentElement.innerHTML = `
+                  <div className="bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-200">
+                    {/* Staff Image */}
+                    <div className="relative h-80 bg-gradient-to-br from-blue-50 to-blue-100">
+                      <Image
+                        src={member.image}
+                        alt={member.name}
+                        fill
+                        className="object-cover"
+                        onError={(e) => {
+                          e.currentTarget.style.display = "none";
+                          if (e.currentTarget.parentElement) {
+                            e.currentTarget.parentElement.innerHTML = `
                             <div class="w-full h-full flex flex-col items-center justify-center p-8">
                               <div class="w-32 h-32 bg-gradient-to-br from-blue-500 to-blue-700 rounded-full flex items-center justify-center mb-6">
                                 <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -167,50 +193,51 @@ export default function StaffPage() {
                               <p class="text-blue-900 font-bold text-xl text-center">${member.name}</p>
                             </div>
                           `;
-                        }
-                      }}
-                    />
-
-                    {/* Department Icon Badge */}
-                    <div className="absolute top-4 right-4 bg-white rounded-full p-3 shadow-lg">
-                      <IconComponent
-                        className="w-6 h-6 text-blue-600"
-                        strokeWidth={2}
+                          }
+                        }}
                       />
+
+                      {/* Department Icon Badge */}
+                      <div className="absolute top-4 right-4 bg-white rounded-full p-3 shadow-lg">
+                        <IconComponent
+                          className="w-6 h-6 text-blue-600"
+                          strokeWidth={2}
+                        />
+                      </div>
+                    </div>
+
+                    {/* Staff Info */}
+                    <div className="p-6">
+                      <h3 className="text-2xl font-bold text-blue-800 mb-2">
+                        {member.name}
+                      </h3>
+
+                      <div className="flex items-center space-x-2 mb-1">
+                        <Award className="w-4 h-4 text-blue-600" />
+                        <p className="text-blue-600 font-semibold">
+                          {member.designation}
+                        </p>
+                      </div>
+
+                      <p className="text-gray-600 text-sm mb-4">
+                        {member.department}
+                      </p>
+
+                      <div className="border-t border-gray-200 pt-4 mb-4">
+                        <p className="text-gray-700 leading-relaxed text-sm">
+                          {member.bio}
+                        </p>
+                      </div>
+
+                      <div className="bg-blue-50 rounded-lg p-4">
+                        <p className="text-xs text-gray-600 mb-1">Specialty:</p>
+                        <p className="text-blue-700 font-semibold text-sm">
+                          {member.specialty}
+                        </p>
+                      </div>
                     </div>
                   </div>
-
-                  {/* Staff Info */}
-                  <div className="p-6">
-                    <h3 className="text-2xl font-bold text-blue-800 mb-2">
-                      {member.name}
-                    </h3>
-
-                    <div className="flex items-center space-x-2 mb-1">
-                      <Award className="w-4 h-4 text-blue-600" />
-                      <p className="text-blue-600 font-semibold">
-                        {member.designation}
-                      </p>
-                    </div>
-
-                    <p className="text-gray-600 text-sm mb-4">
-                      {member.department}
-                    </p>
-
-                    <div className="border-t border-gray-200 pt-4 mb-4">
-                      <p className="text-gray-700 leading-relaxed text-sm">
-                        {member.bio}
-                      </p>
-                    </div>
-
-                    <div className="bg-blue-50 rounded-lg p-4">
-                      <p className="text-xs text-gray-600 mb-1">Specialty:</p>
-                      <p className="text-blue-700 font-semibold text-sm">
-                        {member.specialty}
-                      </p>
-                    </div>
-                  </div>
-                </div>
+                </AnimatedContent>
               );
             })}
           </div>
@@ -220,152 +247,216 @@ export default function StaffPage() {
       {/* Nursing Team Section */}
       <section className="py-16 px-6 md:px-12 bg-gradient-to-br from-blue-50 to-white">
         <div className="max-w-7xl mx-auto text-center">
-          <div className="mb-8">
-            <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-700 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Heart className="w-8 h-8 text-white" strokeWidth={2} />
+          <AnimatedContent
+            distance={80}
+            direction="vertical"
+            duration={1.2}
+            reverse={true}
+            initialOpacity={0}
+            animateOpacity
+            threshold={0.2}
+          >
+            <div className="mb-8">
+              <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-700 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Heart className="w-8 h-8 text-white" strokeWidth={2} />
+              </div>
+              <h2 className="text-3xl md:text-4xl font-bold text-blue-800 mb-4">
+                Our Nursing Team
+              </h2>
+              <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+                In addition to our core staff, we have a dedicated team of over
+                20 qualified nurses providing round-the-clock care with
+                compassion and professionalism.
+              </p>
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold text-blue-800 mb-4">
-              Our Nursing Team
-            </h2>
-            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-              In addition to our core staff, we have a dedicated team of over 20
-              qualified nurses providing round-the-clock care with compassion
-              and professionalism.
-            </p>
-          </div>
+          </AnimatedContent>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-            <div className="bg-white rounded-xl p-6 shadow-lg">
-              <Stethoscope
-                className="w-12 h-12 text-blue-600 mx-auto mb-4"
-                strokeWidth={2}
-              />
-              <h3 className="text-blue-800 font-bold text-lg mb-2">
-                Expert Care
-              </h3>
-              <p className="text-gray-600 text-sm">
-                Highly trained nurses with years of clinical experience
-              </p>
-            </div>
-            <div className="bg-white rounded-xl p-6 shadow-lg">
-              <Heart
-                className="w-12 h-12 text-blue-600 mx-auto mb-4"
-                strokeWidth={2}
-              />
-              <h3 className="text-blue-800 font-bold text-lg mb-2">
-                Compassionate Service
-              </h3>
-              <p className="text-gray-600 text-sm">
-                Patient-centered care with empathy and dignity
-              </p>
-            </div>
-            <div className="bg-white rounded-xl p-6 shadow-lg">
-              <Users
-                className="w-12 h-12 text-blue-600 mx-auto mb-4"
-                strokeWidth={2}
-              />
-              <h3 className="text-blue-800 font-bold text-lg mb-2">
-                24/7 Availability
-              </h3>
-              <p className="text-gray-600 text-sm">
-                Round-the-clock nursing support for all patients
-              </p>
-            </div>
+            {[
+              {
+                icon: Stethoscope,
+                title: "Expert Care",
+                description:
+                  "Highly trained nurses with years of clinical experience",
+              },
+              {
+                icon: Heart,
+                title: "Compassionate Service",
+                description: "Patient-centered care with empathy and dignity",
+              },
+              {
+                icon: Users,
+                title: "24/7 Availability",
+                description: "Round-the-clock nursing support for all patients",
+              },
+            ].map((item, index) => (
+              <AnimatedContent
+                key={index}
+                distance={100}
+                direction="vertical"
+                duration={1.3 + index * 0.15}
+                reverse={false}
+                initialOpacity={0}
+                animateOpacity
+                threshold={0.2}
+              >
+                <div className="bg-white rounded-xl p-6 shadow-lg">
+                  <item.icon
+                    className="w-12 h-12 text-blue-600 mx-auto mb-4"
+                    strokeWidth={2}
+                  />
+                  <h3 className="text-blue-800 font-bold text-lg mb-2">
+                    {item.title}
+                  </h3>
+                  <p className="text-gray-600 text-sm">{item.description}</p>
+                </div>
+              </AnimatedContent>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Join Our Team CTA */}
       <section className="py-16 px-6 md:px-12 bg-gradient-to-r from-blue-500 to-blue-700">
-        <div className="max-w-4xl mx-auto text-center">
-          <Users
-            className="w-16 h-16 text-white mx-auto mb-6"
-            strokeWidth={2}
-          />
-          <h3 className="text-3xl md:text-4xl font-bold text-white mb-6">
-            Join Our Team of Healthcare Heroes
-          </h3>
-          <p className="text-blue-50 text-lg mb-8 max-w-2xl mx-auto">
-            We&apos;re always looking for passionate healthcare professionals
-            who share our vision of faith-driven, compassionate medical care.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="/contact"
-              className="inline-flex items-center justify-center bg-white text-blue-700 px-10 py-4 rounded-full font-bold text-lg hover:shadow-xl transition-shadow duration-200"
-            >
-              <Mail className="w-5 h-5 mr-2" />
-              Send Your CV
-            </a>
-            <a
-              href="tel:08033899495"
-              className="inline-flex items-center justify-center border-2 border-white text-white px-10 py-4 rounded-full font-bold text-lg hover:bg-white hover:text-blue-700 transition-colors duration-200"
-            >
-              <Phone className="w-5 h-5 mr-2" />
-              Call Us
-            </a>
+        <AnimatedContent
+          distance={100}
+          direction="vertical"
+          duration={1.3}
+          reverse={false}
+          initialOpacity={0}
+          animateOpacity
+          threshold={0.2}
+        >
+          <div className="max-w-4xl mx-auto text-center">
+            <Users
+              className="w-16 h-16 text-white mx-auto mb-6"
+              strokeWidth={2}
+            />
+            <h3 className="text-3xl md:text-4xl font-bold text-white mb-6">
+              Join Our Team of Healthcare Heroes
+            </h3>
+            <p className="text-blue-50 text-lg mb-8 max-w-2xl mx-auto">
+              We&apos;re always looking for passionate healthcare professionals
+              who share our vision of faith-driven, compassionate medical care.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a
+                href="/contact"
+                className="inline-flex items-center justify-center bg-white text-blue-700 px-10 py-4 rounded-full font-bold text-lg hover:shadow-xl transition-shadow duration-200"
+              >
+                <Mail className="w-5 h-5 mr-2" />
+                Send Your CV
+              </a>
+              <a
+                href="tel:08033899495"
+                className="inline-flex items-center justify-center border-2 border-white text-white px-10 py-4 rounded-full font-bold text-lg hover:bg-white hover:text-blue-700 transition-colors duration-200"
+              >
+                <Phone className="w-5 h-5 mr-2" />
+                Call Us
+              </a>
+            </div>
           </div>
-        </div>
+        </AnimatedContent>
       </section>
 
       {/* Founders Section */}
       <section className="py-20 px-6 md:px-12">
         <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-blue-800 mb-4">
-              Our Founders
-            </h2>
-            <p className="text-gray-600 text-lg">
-              Meet the visionary leaders who established God&apos;s Favourite
-              Hospital in 2010
-            </p>
-          </div>
+          <AnimatedContent
+            distance={80}
+            direction="vertical"
+            duration={1.2}
+            reverse={true}
+            initialOpacity={0}
+            animateOpacity
+            threshold={0.2}
+          >
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-blue-800 mb-4">
+                Our Founders
+              </h2>
+              <p className="text-gray-600 text-lg">
+                Meet the visionary leaders who established God&apos;s Favourite
+                Hospital in 2010
+              </p>
+            </div>
+          </AnimatedContent>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-gradient-to-br from-blue-50 to-white rounded-2xl p-8 border-2 border-blue-200 text-center">
-              <div className="w-24 h-24 bg-gradient-to-br from-blue-500 to-blue-700 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Award className="w-12 h-12 text-white" strokeWidth={2} />
+            <AnimatedContent
+              distance={120}
+              direction="horizontal"
+              duration={1.3}
+              reverse={true}
+              initialOpacity={0}
+              animateOpacity
+              threshold={0.2}
+            >
+              <div className="bg-gradient-to-br from-blue-50 to-white rounded-2xl p-8 border-2 border-blue-200 text-center">
+                <div className="w-24 h-24 bg-gradient-to-br from-blue-500 to-blue-700 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <Award className="w-12 h-12 text-white" strokeWidth={2} />
+                </div>
+                <h3 className="text-2xl font-bold text-blue-900 mb-2">
+                  Dr. Rahman Balogun
+                </h3>
+                <p className="text-blue-600 font-semibold mb-4">
+                  Co-Founder & Chief Medical Director
+                </p>
+                <p className="text-gray-600 leading-relaxed">
+                  Driven by faith and compassion, Dr. Balogun has led the
+                  hospital from a single flat to a magnificent three-storey
+                  medical facility, making quality healthcare accessible to all.
+                </p>
               </div>
-              <h3 className="text-2xl font-bold text-blue-900 mb-2">
-                Dr. Rahman Balogun
-              </h3>
-              <p className="text-blue-600 font-semibold mb-4">
-                Co-Founder & Chief Medical Director
-              </p>
-              <p className="text-gray-600 leading-relaxed">
-                Driven by faith and compassion, Dr. Balogun has led the hospital
-                from a single flat to a magnificent three-storey medical
-                facility, making quality healthcare accessible to all.
-              </p>
-            </div>
+            </AnimatedContent>
 
-            <div className="bg-gradient-to-br from-blue-50 to-white rounded-2xl p-8 border-2 border-blue-200 text-center">
-              <div className="w-24 h-24 bg-gradient-to-br from-blue-500 to-blue-700 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Heart className="w-12 h-12 text-white" strokeWidth={2} />
+            <AnimatedContent
+              distance={120}
+              direction="horizontal"
+              duration={1.3}
+              reverse={false}
+              initialOpacity={0}
+              animateOpacity
+              threshold={0.2}
+            >
+              <div className="bg-gradient-to-br from-blue-50 to-white rounded-2xl p-8 border-2 border-blue-200 text-center">
+                <div className="w-24 h-24 bg-gradient-to-br from-blue-500 to-blue-700 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <Heart className="w-12 h-12 text-white" strokeWidth={2} />
+                </div>
+                <h3 className="text-2xl font-bold text-blue-900 mb-2">
+                  Nurse Adeshola Sherifat
+                </h3>
+                <p className="text-blue-600 font-semibold mb-4">
+                  Co-Founder & Head Nurse
+                </p>
+                <p className="text-gray-600 leading-relaxed">
+                  With unwavering dedication to patient care, Nurse Adeshola has
+                  been instrumental in building a nursing team that delivers
+                  compassionate healthcare with grace and professionalism.
+                </p>
               </div>
-              <h3 className="text-2xl font-bold text-blue-900 mb-2">
-                Nurse Adeshola Sherifat
-              </h3>
-              <p className="text-blue-600 font-semibold mb-4">
-                Co-Founder & Head Nurse
-              </p>
-              <p className="text-gray-600 leading-relaxed">
-                With unwavering dedication to patient care, Nurse Adeshola has
-                been instrumental in building a nursing team that delivers
-                compassionate healthcare with grace and professionalism.
-              </p>
-            </div>
+            </AnimatedContent>
           </div>
 
-          <div className="mt-8 text-center bg-blue-900 rounded-2xl p-8 text-white">
-            <p className="text-xl italic font-semibold mb-2">
-              &quot;We came out as victors&quot;
-            </p>
-            <p className="text-blue-200">
-              Through perseverance, teamwork, and unwavering faith, our founders
-              turned every setback into a stepping stone.
-            </p>
-          </div>
+          <AnimatedContent
+            distance={80}
+            direction="vertical"
+            duration={1.4}
+            reverse={false}
+            initialOpacity={0}
+            animateOpacity
+            threshold={0.3}
+          >
+            <div className="mt-8 text-center bg-blue-900 rounded-2xl p-8 text-white">
+              <p className="text-xl italic font-semibold mb-2">
+                &quot;We came out as victors&quot;
+              </p>
+              <p className="text-blue-200">
+                Through perseverance, teamwork, and unwavering faith, our
+                founders turned every setback into a stepping stone.
+              </p>
+            </div>
+          </AnimatedContent>
         </div>
       </section>
     </div>

@@ -16,44 +16,7 @@ import {
   Phone,
 } from "lucide-react";
 import Image from "next/image";
-
-export const medicalServicesSchema = {
-  "@context": "https://schema.org",
-  "@type": "ItemList",
-  name: "Medical Services at God's Favourite Hospital",
-  itemListElement: [
-    {
-      "@type": "ListItem",
-      position: 1,
-      name: "Emergency & Trauma Care",
-      description: "24/7 emergency medical services",
-    },
-    {
-      "@type": "ListItem",
-      position: 2,
-      name: "Obstetrics & Gynecology",
-      description: "Complete maternity and women's health services",
-    },
-    {
-      "@type": "ListItem",
-      position: 3,
-      name: "Pediatrics",
-      description: "Comprehensive child healthcare",
-    },
-    {
-      "@type": "ListItem",
-      position: 4,
-      name: "Surgical Services",
-      description: "General and specialized surgical procedures",
-    },
-    {
-      "@type": "ListItem",
-      position: 5,
-      name: "Laboratory & Diagnostic Services",
-      description: "Advanced diagnostic testing and analysis",
-    },
-  ],
-};
+import AnimatedContent from "@/components/ui/AnimatedContent";
 
 export default function ServicesPage() {
   const services = [
@@ -218,44 +181,62 @@ export default function ServicesPage() {
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-blue-50 to-white py-20 px-6 md:px-12">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <div className="flex items-center justify-center space-x-3 mb-6">
-              <div className="h-1 w-16 bg-gradient-to-r from-blue-500 to-blue-700 rounded-full"></div>
-              <Stethoscope
-                className="w-10 h-10 text-blue-600"
-                strokeWidth={2}
-              />
-              <div className="h-1 w-16 bg-gradient-to-r from-blue-500 to-blue-700 rounded-full"></div>
+          <AnimatedContent
+            distance={100}
+            direction="vertical"
+            duration={1.2}
+            reverse={true}
+            initialOpacity={0}
+            animateOpacity
+            threshold={0.1}
+          >
+            <div className="text-center mb-12">
+              <div className="flex items-center justify-center space-x-3 mb-6">
+                <div className="h-1 w-16 bg-gradient-to-r from-blue-500 to-blue-700 rounded-full"></div>
+                <Stethoscope
+                  className="w-10 h-10 text-blue-600"
+                  strokeWidth={2}
+                />
+                <div className="h-1 w-16 bg-gradient-to-r from-blue-500 to-blue-700 rounded-full"></div>
+              </div>
+
+              <h1 className="font-extrabold text-4xl md:text-5xl lg:text-6xl text-blue-900 leading-tight mb-6">
+                Our Medical Services
+              </h1>
+
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                Comprehensive healthcare services delivered with compassion,
+                expertise, and state-of-the-art medical technology.
+              </p>
             </div>
-
-            <h1 className="font-extrabold text-4xl md:text-5xl lg:text-6xl text-blue-900 leading-tight mb-6">
-              Our Medical Services
-            </h1>
-
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Comprehensive healthcare services delivered with compassion,
-              expertise, and state-of-the-art medical technology.
-            </p>
-          </div>
+          </AnimatedContent>
 
           {/* Quick Stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
-            <div className="bg-white rounded-xl p-6 shadow-lg text-center">
-              <p className="text-3xl font-bold text-blue-700 mb-2">11+</p>
-              <p className="text-sm text-gray-600">Specialties</p>
-            </div>
-            <div className="bg-white rounded-xl p-6 shadow-lg text-center">
-              <p className="text-3xl font-bold text-blue-700 mb-2">24/7</p>
-              <p className="text-sm text-gray-600">Emergency Care</p>
-            </div>
-            <div className="bg-white rounded-xl p-6 shadow-lg text-center">
-              <p className="text-3xl font-bold text-blue-700 mb-2">20+</p>
-              <p className="text-sm text-gray-600">Qualified Staff</p>
-            </div>
-            <div className="bg-white rounded-xl p-6 shadow-lg text-center">
-              <p className="text-3xl font-bold text-blue-700 mb-2">15+</p>
-              <p className="text-sm text-gray-600">Years Experience</p>
-            </div>
+            {[
+              { value: "11+", label: "Specialties" },
+              { value: "24/7", label: "Emergency Care" },
+              { value: "20+", label: "Qualified Staff" },
+              { value: "15+", label: "Years Experience" },
+            ].map((stat, index) => (
+              <AnimatedContent
+                key={index}
+                distance={80}
+                direction="vertical"
+                duration={1.2 + index * 0.1}
+                reverse={false}
+                initialOpacity={0}
+                animateOpacity
+                threshold={0.2}
+              >
+                <div className="bg-white rounded-xl p-6 shadow-lg text-center">
+                  <p className="text-3xl font-bold text-blue-700 mb-2">
+                    {stat.value}
+                  </p>
+                  <p className="text-sm text-gray-600">{stat.label}</p>
+                </div>
+              </AnimatedContent>
+            ))}
           </div>
         </div>
       </section>
@@ -276,19 +257,28 @@ export default function ServicesPage() {
                   }`}
                 >
                   {/* Image */}
-                  <div className={`relative ${!isEven ? "lg:order-2" : ""}`}>
-                    <div className="relative rounded-2xl overflow-hidden shadow-2xl">
-                      <div className="aspect-[4/3] bg-gradient-to-br from-blue-50 to-blue-100">
-                        <Image
-                          src={service.image}
-                          alt={service.title}
-                          width={600}
-                          height={450}
-                          className="w-full h-full object-cover"
-                          onError={(e) => {
-                            e.currentTarget.style.display = "none";
-                            if (e.currentTarget.parentElement) {
-                              e.currentTarget.parentElement.innerHTML = `
+                  <AnimatedContent
+                    distance={150}
+                    direction="horizontal"
+                    duration={1.3}
+                    reverse={isEven}
+                    initialOpacity={0}
+                    animateOpacity
+                    threshold={0.2}
+                  >
+                    <div className={`relative ${!isEven ? "lg:order-2" : ""}`}>
+                      <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+                        <div className="aspect-[4/3] bg-gradient-to-br from-blue-50 to-blue-100">
+                          <Image
+                            src={service.image}
+                            alt={service.title}
+                            width={600}
+                            height={450}
+                            className="w-full h-full object-cover"
+                            onError={(e) => {
+                              e.currentTarget.style.display = "none";
+                              if (e.currentTarget.parentElement) {
+                                e.currentTarget.parentElement.innerHTML = `
                                 <div class="w-full h-full flex flex-col items-center justify-center p-8">
                                   <div class="w-24 h-24 bg-gradient-to-br from-blue-500 to-blue-700 rounded-2xl flex items-center justify-center mb-6">
                                     <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -298,73 +288,107 @@ export default function ServicesPage() {
                                   <p class="text-blue-900 font-bold text-xl text-center">${service.title}</p>
                                 </div>
                               `;
-                            }
-                          }}
-                        />
+                              }
+                            }}
+                          />
+                        </div>
+
+                        {/* Decorative Elements */}
+                        <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-gradient-to-br from-blue-500 to-blue-700 rounded-full opacity-20 blur-2xl"></div>
+                        <div className="absolute -top-4 -left-4 w-24 h-24 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full opacity-20 blur-xl"></div>
                       </div>
 
-                      {/* Decorative Elements */}
-                      <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-gradient-to-br from-blue-500 to-blue-700 rounded-full opacity-20 blur-2xl"></div>
-                      <div className="absolute -top-4 -left-4 w-24 h-24 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full opacity-20 blur-xl"></div>
-                    </div>
-
-                    {/* Floating Icon Badge */}
-                    <div className="absolute -bottom-6 left-8 bg-white rounded-xl shadow-lg p-4 border border-gray-100">
-                      <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-700 rounded-full flex items-center justify-center">
-                        <IconComponent
-                          className="w-6 h-6 text-white"
-                          strokeWidth={2}
-                        />
+                      {/* Floating Icon Badge */}
+                      <div className="absolute -bottom-6 left-8 bg-white rounded-xl shadow-lg p-4 border border-gray-100">
+                        <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-700 rounded-full flex items-center justify-center">
+                          <IconComponent
+                            className="w-6 h-6 text-white"
+                            strokeWidth={2}
+                          />
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  </AnimatedContent>
 
                   {/* Content */}
                   <div className={`space-y-6 ${!isEven ? "lg:order-1" : ""}`}>
-                    <div className="flex items-center space-x-3">
-                      <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
-                        <IconComponent
-                          className="w-6 h-6 text-blue-600"
-                          strokeWidth={2}
-                        />
+                    <AnimatedContent
+                      distance={100}
+                      direction="horizontal"
+                      duration={1.2}
+                      reverse={!isEven}
+                      initialOpacity={0}
+                      animateOpacity
+                      threshold={0.2}
+                    >
+                      <div className="flex items-center space-x-3">
+                        <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
+                          <IconComponent
+                            className="w-6 h-6 text-blue-600"
+                            strokeWidth={2}
+                          />
+                        </div>
+                        <h2 className="text-2xl md:text-3xl font-bold text-blue-800">
+                          {service.title}
+                        </h2>
                       </div>
-                      <h2 className="text-2xl md:text-3xl font-bold text-blue-800">
-                        {service.title}
-                      </h2>
-                    </div>
+                    </AnimatedContent>
 
-                    <p className="text-gray-600 leading-relaxed text-lg">
-                      {service.description}
-                    </p>
+                    <AnimatedContent
+                      distance={80}
+                      direction="vertical"
+                      duration={1.3}
+                      reverse={false}
+                      initialOpacity={0.1}
+                      animateOpacity
+                      threshold={0.25}
+                    >
+                      <p className="text-gray-600 leading-relaxed text-lg">
+                        {service.description}
+                      </p>
+                    </AnimatedContent>
 
                     {/* Features List */}
-                    <div className="bg-blue-50 rounded-xl p-6">
-                      <h3 className="text-blue-800 font-semibold text-lg mb-4">
-                        What We Offer:
-                      </h3>
-                      <ul className="space-y-3">
-                        {service.features.map((feature, idx) => (
-                          <li key={idx} className="flex items-start space-x-3">
-                            <div className="w-5 h-5 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                              <svg
-                                className="w-3 h-3 text-white"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                              >
-                                <path
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                  strokeWidth="3"
-                                  d="M5 13l4 4L19 7"
-                                ></path>
-                              </svg>
-                            </div>
-                            <span className="text-gray-700">{feature}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
+                    <AnimatedContent
+                      distance={60}
+                      direction="vertical"
+                      duration={1.4}
+                      reverse={false}
+                      initialOpacity={0}
+                      animateOpacity
+                      threshold={0.3}
+                    >
+                      <div className="bg-blue-50 rounded-xl p-6">
+                        <h3 className="text-blue-800 font-semibold text-lg mb-4">
+                          What We Offer:
+                        </h3>
+                        <ul className="space-y-3">
+                          {service.features.map((feature, idx) => (
+                            <li
+                              key={idx}
+                              className="flex items-start space-x-3"
+                            >
+                              <div className="w-5 h-5 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <svg
+                                  className="w-3 h-3 text-white"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth="3"
+                                    d="M5 13l4 4L19 7"
+                                  ></path>
+                                </svg>
+                              </div>
+                              <span className="text-gray-700">{feature}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </AnimatedContent>
                   </div>
                 </div>
               );
@@ -375,68 +399,89 @@ export default function ServicesPage() {
 
       {/* CTA Section */}
       <section className="py-16 px-6 md:px-12 bg-gradient-to-r from-blue-500 to-blue-700">
-        <div className="max-w-4xl mx-auto text-center">
-          <Calendar
-            className="w-16 h-16 text-white mx-auto mb-6"
-            strokeWidth={2}
-          />
-          <h3 className="text-3xl md:text-4xl font-bold text-white mb-6">
-            Ready to Experience Quality Healthcare?
-          </h3>
-          <p className="text-blue-50 text-lg mb-8 max-w-2xl mx-auto">
-            Our dedicated team is here to provide you with compassionate,
-            world-class medical care. Book your appointment today.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="/contact"
-              className="inline-flex items-center justify-center bg-white text-blue-700 px-10 py-4 rounded-full font-bold text-lg hover:shadow-xl transition-shadow duration-200"
-            >
-              <Calendar className="w-5 h-5 mr-2" />
-              Book Appointment
-            </a>
-            <a
-              href="/contact"
-              className="inline-flex items-center justify-center border-2 border-white text-white px-10 py-4 rounded-full font-bold text-lg hover:bg-white hover:text-blue-700 transition-colors duration-200"
-            >
-              <Phone className="w-5 h-5 mr-2" />
-              Contact Us
-            </a>
+        <AnimatedContent
+          distance={100}
+          direction="vertical"
+          duration={1.3}
+          reverse={false}
+          initialOpacity={0}
+          animateOpacity
+          threshold={0.2}
+        >
+          <div className="max-w-4xl mx-auto text-center">
+            <Calendar
+              className="w-16 h-16 text-white mx-auto mb-6"
+              strokeWidth={2}
+            />
+            <h3 className="text-3xl md:text-4xl font-bold text-white mb-6">
+              Ready to Experience Quality Healthcare?
+            </h3>
+            <p className="text-blue-50 text-lg mb-8 max-w-2xl mx-auto">
+              Our dedicated team is here to provide you with compassionate,
+              world-class medical care. Book your appointment today.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a
+                href="/contact"
+                className="inline-flex items-center justify-center bg-white text-blue-700 px-10 py-4 rounded-full font-bold text-lg hover:shadow-xl transition-shadow duration-200"
+              >
+                <Calendar className="w-5 h-5 mr-2" />
+                Book Appointment
+              </a>
+              <a
+                href="/contact"
+                className="inline-flex items-center justify-center border-2 border-white text-white px-10 py-4 rounded-full font-bold text-lg hover:bg-white hover:text-blue-700 transition-colors duration-200"
+              >
+                <Phone className="w-5 h-5 mr-2" />
+                Contact Us
+              </a>
+            </div>
           </div>
-        </div>
+        </AnimatedContent>
       </section>
 
       {/* Emergency Notice */}
       <section className="py-12 px-6 md:px-12 bg-blue-900">
-        <div className="max-w-4xl mx-auto text-center">
-          <AlertCircle
-            className="w-12 h-12 text-white mx-auto mb-4"
-            strokeWidth={2}
-          />
-          <h4 className="text-2xl font-bold text-white mb-3">
-            24/7 Emergency Services Available
-          </h4>
-          <p className="text-blue-100 mb-4">
-            For medical emergencies, call us immediately or visit our facility.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center text-white">
-            <a
-              href="tel:08033899495"
-              className="flex items-center space-x-2 hover:text-blue-200 transition-colors"
-            >
-              <Phone className="w-5 h-5" />
-              <span className="font-semibold">0803 389 9495</span>
-            </a>
-            <span className="hidden sm:block text-blue-300">|</span>
-            <a
-              href="tel:08163165464"
-              className="flex items-center space-x-2 hover:text-blue-200 transition-colors"
-            >
-              <Phone className="w-5 h-5" />
-              <span className="font-semibold">0816 316 5464</span>
-            </a>
+        <AnimatedContent
+          distance={80}
+          direction="vertical"
+          duration={1.2}
+          reverse={false}
+          initialOpacity={0}
+          animateOpacity
+          threshold={0.2}
+        >
+          <div className="max-w-4xl mx-auto text-center">
+            <AlertCircle
+              className="w-12 h-12 text-white mx-auto mb-4"
+              strokeWidth={2}
+            />
+            <h4 className="text-2xl font-bold text-white mb-3">
+              24/7 Emergency Services Available
+            </h4>
+            <p className="text-blue-100 mb-4">
+              For medical emergencies, call us immediately or visit our
+              facility.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center text-white">
+              <a
+                href="tel:08033899495"
+                className="flex items-center space-x-2 hover:text-blue-200 transition-colors"
+              >
+                <Phone className="w-5 h-5" />
+                <span className="font-semibold">0803 389 9495</span>
+              </a>
+              <span className="hidden sm:block text-blue-300">|</span>
+              <a
+                href="tel:08163165464"
+                className="flex items-center space-x-2 hover:text-blue-200 transition-colors"
+              >
+                <Phone className="w-5 h-5" />
+                <span className="font-semibold">0816 316 5464</span>
+              </a>
+            </div>
           </div>
-        </div>
+        </AnimatedContent>
       </section>
     </div>
   );
