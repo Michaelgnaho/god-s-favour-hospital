@@ -105,7 +105,7 @@ export default function Footer() {
                   href="mailto:godsfavouritehospital@gmail.com"
                   className="text-gray-600 text-sm hover:text-blue-600 transition-colors duration-200"
                 >
-                  godsfavouritehospital@gmail.com
+                  godsfavouritehospitals@gmail.com
                 </a>
               </li>
               <li className="flex items-center space-x-3">
