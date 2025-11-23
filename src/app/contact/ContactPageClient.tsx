@@ -49,7 +49,7 @@ export default function ContactPageClient() {
     {
       icon: Mail,
       title: "Email Address",
-      details: ["godsfavouritehospitals@gmail.com"],
+      details: ["contact@godsfavouritehospital.com"],
       links: ["mailto:godsfavouritehospitals@gmail.com"],
       description: "Send us an email and we'll respond promptly",
     },
@@ -290,7 +290,7 @@ export default function ContactPageClient() {
                   </a>
 
                   <a
-                    href="mailto:godsfavouritehospitals@gmail.com"
+                    href="mailto:contact@godsfavouritehospital.com"
                     className="flex items-center space-x-3 p-4 bg-white rounded-lg border border-gray-200 hover:border-blue-300 hover:shadow-md transition-all duration-200"
                   >
                     <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">

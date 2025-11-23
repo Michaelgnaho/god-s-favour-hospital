@@ -136,8 +136,7 @@ export default function Footer() {
                     href="mailto:godsfavouritehospital@gmail.com"
                     className="text-gray-600 text-sm hover:text-blue-600 transition-colors duration-200"
                   >
-                    godsfavouritehospitals@gmail.com
-                  </a>
+contact@godsfavouritehospital.com                  </a>
                 </li>
                 <li className="flex items-center space-x-3">
                   <Clock className="w-5 h-5 text-blue-600 flex-shrink-0" />
